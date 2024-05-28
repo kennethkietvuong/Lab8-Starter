@@ -37,7 +37,7 @@ function initializeServiceWorker() {
   /*******************/
   // ServiceWorkers have many uses, the most common of which is to manage
   // local caches, intercept network requests, and conditionally serve from
-  // those local caches. This increases performance since users aren't
+  // those local caches. This increases performance since users aren'ts
   // re-downloading the same resources every single page visit. This also allows
   // websites to have some (if not all) functionality offline! I highly
   // recommend reading up on ServiceWorkers on MDN before continuing.
@@ -45,14 +45,36 @@ function initializeServiceWorker() {
   // We first must register our ServiceWorker here before any of the code in
   // sw.js is executed.
   // B1. TODO - Check if 'serviceWorker' is supported in the current browser
-  // B2. TODO - Listen for the 'load' event on the window object.
-  // Steps B3-B6 will be *inside* the event listener's function created in B2
-  // B3. TODO - Register './sw.js' as a service worker (The MDN article
-  //            "Using Service Workers" will help you here)
-  // B4. TODO - Once the service worker has been successfully registered, console
-  //            log that it was successful.
-  // B5. TODO - In the event that the service worker registration fails, console
-  //            log that it has failed.
+  if ('serviceWorker' in navigator)
+  {
+
+    // B2. TODO - Listen for the 'load' event on the window object. 
+    // Steps B3-B6 will be *inside* the event listener's function created in B2
+    window.addEventListener('load', function() {
+    // B3. TODO - Register './sw.js' as a service worker (The MDN article
+    //  "Using Service Workers" will help you here)
+
+    try {
+
+      navigator.serviceWorker.register("/sw.js").then(
+
+        // B4. TODO - Once the service worker has been successfully registered, console
+        //log that it was successful.
+        console.log("Service Worker registered successfully")
+      );
+    
+    }
+
+    // B5. TODO - In the event that the service worker registration fails, console
+    //log that it has failed.
+      catch(error) {
+        console.log("Registration failed");
+      }
+    });
+    
+  }
+  
+  
   // STEPS B6 ONWARDS WILL BE IN /sw.js
 }
 
