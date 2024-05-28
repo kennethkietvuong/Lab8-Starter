@@ -56,7 +56,7 @@ function initializeServiceWorker() {
 
     try {
 
-      navigator.serviceWorker.register("./Lab8-Starter/sw.js").then(
+      navigator.serviceWorker.register("./sw.js").then(
 
         // B4. TODO - Once the service worker has been successfully registered, console
         //log that it was successful.
